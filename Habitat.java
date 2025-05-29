@@ -1,19 +1,61 @@
-public class Habitat{
-        String nomedobioma;
-        int capacidade;
-        String tipo;
-        int idHabitat;
-    
-    
-    Habitat(String nomedobioma, int capacidade, String tipo, int idHabitat){
+import java.util.ArrayList;
+
+public class Habitat {
+    String nomedobioma;
+    int capacidade;
+    String tipo;
+    int idHabitat;
+    ArrayList<Animal> animais;
+
+    Habitat(String nomedobioma, int capacidade, String tipo, int idHabitat) {
         this.nomedobioma = nomedobioma;
         this.capacidade = capacidade;
         this.tipo = tipo;
         this.idHabitat = idHabitat;
+        this.animais = new ArrayList<>();
     }
- @Override
-   public String toString(){
- return "nome do bioma: " + nomedobioma +  " capacidade: " + capacidade  + " tipo: " + tipo + " idhabitat: " + idHabitat;
-   }
- 
+
+    public void adicionarAnimal(Animal animal) {
+        if (animais.size() < capacidade) {
+            if (animal.bioma.equals(nomedobioma)) {
+                animais.add(animal);
+                System.out.println("Animal " + animal.nome + " adicionado no habitat " + nomedobioma);
+            } else {
+                System.out.println("Bioma do animal não é compatível com o habitat.");
+            }
+        } else {
+            System.out.println("Habitat cheio, não dá pra adicionar mais animais.");
+        }
+    }
+
+    public void removerAnimal(Animal animal) {
+        if (animais.contains(animal)) {
+            animais.remove(animal);
+            System.out.println("Animal " + animal.nome + " removido do habitat " + nomedobioma);
+        } else {
+            System.out.println("Animal não encontrado no habitat.");
+        }
+    }
+
+    public void transferirAnimal(Animal animal, Habitat outroHabitat) {
+        if (animais.contains(animal)) {
+            if (outroHabitat.animais.size() < outroHabitat.capacidade) {
+                if (animal.bioma.equals(outroHabitat.nomedobioma)) {
+                    animais.remove(animal);
+                    outroHabitat.animais.add(animal);
+                    System.out.println("Animal " + animal.nome + " transferido de " + nomedobioma + " para " + outroHabitat.nomedobioma);
+                } else {
+                    System.out.println("Bioma incompatível. Não foi possível transferir.");
+                }
+            } else {
+                System.out.println("Habitat de destino cheio. Não foi possível transferir.");
+            }
+        } else {
+            System.out.println("Animal não está nesse habitat.");
+        }
+    }
+
+    public String toString() {
+        return "Habitat: " + nomedobioma + ", capacidade: " + capacidade + ", tipo: " + tipo + ", id: " + idHabitat + ", animais: " + animais.size();
+    }
 }
