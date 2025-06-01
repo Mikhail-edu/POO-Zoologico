@@ -6,6 +6,8 @@ int id;
 String bioma;
 int idade;
 int fome;
+static int totalAnimais = 0;
+static int totalAlimentacoes = 0;
 
 
 
@@ -16,28 +18,40 @@ int fome;
         this.especie = especie;
         this.idade = idade;
         this.fome = fome;
+        this.idade =idade;
+        totalAnimais++;
+    }
+    
+    public static int getTotalAnimais(){
+        return totalAnimais;
+    }
+
+    public static int getTotalAlimentacoes(){
+        return totalAlimentacoes;
     }
 
 
-    public void alimentacao(int quantidadeComida){  // metodo para alimentacao dos animas
+    public void alimentacao(int quantidadeComida){  // metodo para alimentacao dos animais
         if (fome == 0) {
         System.out.println(nome + " já está satisfeito e não precisa comer.");
     }else{
          System.out.println("\nAlimentando " + nome + " com " + quantidadeComida + " unidades de comida.");
         fome -= quantidadeComida;
+        totalAlimentacoes++; // registra o total de alimentações.
 
           if (fome < 0) {
             fome = 0;
             //if para simular a alimentacao
         }
     }
-        System.out.println(nome + " agora tem fome: " + fome);
+        System.out.println(nome + " agora está com fome: " + fome);
         if (fome == 0){// if para se a fome do animal for 0 ele nao sera alimentado
-            System.out.println(nome + "animal agora esta satisfeito!");
+            System.out.println(nome + " agora esta satisfeito!");
         }
    
     }
-
+    
+    
 
     @Override
    public String toString(){
