@@ -1,62 +1,61 @@
-public class Animal {
+import java.util.ArrayList;
 
-String nome;
-String especie;
-int id;
-String bioma;
-int idade;
-int fome;
-static int totalAnimais = 0;
-static int totalAlimentacoes = 0;
+public class Habitat {
+    String nomedobioma;
+    int capacidade;
+    String tipo;
+    int idHabitat;
+    ArrayList<Animal> animais;
 
-
-
-    public Animal(String nome, String  especie, int id,String bioma, int idade, int fome ){
-        this.nome = nome;
-        this.id = id;
-        this.bioma = bioma;
-        this.especie = especie;
-        this.idade = idade;
-        this.fome = fome;
-        this.idade =idade;
-        totalAnimais++;
-    }
-    
-    public static int getTotalAnimais(){
-        return totalAnimais;
+    Habitat(String nomedobioma, int capacidade, String tipo, int idHabitat) {
+        this.nomedobioma = nomedobioma;
+        this.capacidade = capacidade;
+        this.tipo = tipo;
+        this.idHabitat = idHabitat;
+        this.animais = new ArrayList<>();
     }
 
-    public static int getTotalAlimentacoes(){
-        return totalAlimentacoes;
-    }
-
-
-    public void alimentacao(int quantidadeComida){  // metodo para alimentacao dos animais
-        if (fome == 0) {
-        System.out.println(nome + " já está satisfeito e não precisa comer.");
-    }else{
-         System.out.println("\nAlimentando " + nome + " com " + quantidadeComida + " unidades de comida.");
-        fome -= quantidadeComida;
-        totalAlimentacoes++; // registra o total de alimentações.
-
-          if (fome < 0) {
-            fome = 0;
-            //if para simular a alimentacao
+    public void adicionarAnimal(Animal animal) {
+        if (animais.size() < capacidade) {
+            if (animal.bioma.equals(nomedobioma)) {
+                animais.add(animal);
+                System.out.println("Animal " + animal.nome + " adicionado no habitat " + nomedobioma);
+            } else {
+                System.out.println("Bioma do animal não é compatível com o habitat.");
+            }
+        } else {
+            System.out.println("Habitat cheio, não dá pra adicionar mais animais.");
         }
     }
-        System.out.println(nome + " agora está com fome: " + fome);
-        if (fome == 0){// if para se a fome do animal for 0 ele nao sera alimentado
-            System.out.println(nome + " agora esta satisfeito!");
+
+    public void removerAnimal(Animal animal) {
+        if (animais.contains(animal)) {
+            animais.remove(animal);
+            System.out.println("Animal " + animal.nome + " removido do habitat " + nomedobioma);
+        } else {
+            System.out.println("Animal não encontrado no habitat.");
         }
-   
     }
-    
-    
 
-    @Override
-   public String toString(){
-     String estadoFome = (fome == 0) ? "Satisfeito" : "Fome: " + fome;
-   return nome + " - " + especie + " (ID: " + id + "), idade: " + idade + ", bioma: " + bioma + ",  " + estadoFome;
-   }
+   public void transferirAnimal(Animal animal, Habitat outroHabitat) {
+    if (animais.contains(animal)) {
+        if (outroHabitat.animais.size() < outroHabitat.capacidade) {
+            if (animal.bioma.equals(outroHabitat.nomedobioma)) {
+                animais.remove(animal);
+                outroHabitat.animais.add(animal);
+                System.out.println("Animal " + animal.nome + " transferido de " + nomedobioma + " para " + outroHabitat.nomedobioma);
+            } else {
+                System.out.println("Bioma incompatível. Animal " + animal.nome + " permanece no habitat " + nomedobioma);
+            }
+        } else {
+            System.out.println("Habitat de destino cheio. Animal " + animal.nome + " permanece no habitat " + nomedobioma);
+        }
+    } else {
+        System.out.println("Animal " + animal.nome + " não está no habitat " + nomedobioma);
+    }
+}
 
+    public String toString() {
+        return "Habitat: " + nomedobioma + ", capacidade: " + capacidade + ", tipo: " + tipo + ", id: " + idHabitat + ", animais: " + animais.size();
+    }
 }
