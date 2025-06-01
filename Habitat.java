@@ -39,11 +39,8 @@ public class Habitat {
 
    public void transferirAnimal(Animal animal, Habitat outroHabitat) {
     if (animais.contains(animal)) {
-        // Verifica se o habitat de destino tem espaço
         if (outroHabitat.animais.size() < outroHabitat.capacidade) {
-            // Verifica se o bioma do animal é compatível
             if (animal.bioma.equals(outroHabitat.nomedobioma)) {
-                // Faz a transferência
                 animais.remove(animal);
                 outroHabitat.animais.add(animal);
                 System.out.println("Animal " + animal.nome + " transferido de " + nomedobioma + " para " + outroHabitat.nomedobioma);
