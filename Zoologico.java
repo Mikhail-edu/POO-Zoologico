@@ -9,7 +9,7 @@ public class Zoologico {
         Habitat habitat4 = new Habitat("floresta", 20, "misto", 19);    
         Habitat habitat5 = new Habitat("mar", 10, "aquatico", 15);      
 
-        System.out.println(" Habitats: ");
+        System.out.println(" \nHabitats: ");
         System.out.println(habitat1);
         System.out.println(habitat2);
         System.out.println(habitat3);
@@ -22,7 +22,7 @@ public class Zoologico {
         Animal animal3 = new Animal("krocodile", "crocodilo", 3, "pantano", 80,20);
         Animal animal4 = new Animal("chifrudo", "bufalo", 4, "savana", 8,50);
         Animal animal5 = new Animal("blue", "arara-azul", 5, "floresta", 25,15);
-        System.out.println(" Animais: ");
+        System.out.println(" \nAnimais: ");
         System.out.println(animal1);
         System.out.println(animal2);
         System.out.println(animal3);
@@ -30,7 +30,7 @@ public class Zoologico {
         System.out.println(animal5);
 
 
-        System.out.println(" Status dos animais antes de alimentar:");
+        System.out.println("\nStatus dos animais antes de alimentar:");
         System.out.println(animal1);
         System.out.println(animal2);
         System.out.println(animal3);
@@ -57,11 +57,31 @@ public class Zoologico {
         Cuidador cuidador4 = new Cuidador("Felipe", habitat1.idHabitat); // Associado à Savana (ID 13)
         Cuidador cuidador5 = new Cuidador("valesson", habitat5.idHabitat); // Associado ao Mar (ID 15)
 
-        System.out.println(" Cuidadores:");
+        System.out.println("\nCuidadores:");
         System.out.println(cuidador1);
         System.out.println(cuidador2);
         System.out.println(cuidador3);
         System.out.println(cuidador4);
         System.out.println(cuidador5);
+
+
+        System.out.println("\nStatus de transferencias:");
+        habitat1.adicionarAnimal(animal1);
+        habitat3.adicionarAnimal(animal2);
+        habitat2.adicionarAnimal(animal4);
+        habitat4.adicionarAnimal(animal5);
+        habitat5.adicionarAnimal(animal3);
+
+        System.out.println("\nZoologico:");
+        System.out.println(habitat1);
+        System.out.println(habitat2);
+        System.out.println(habitat3);
+        System.out.println(habitat4);
+        System.out.println(habitat5);
+
+
+        System.out.println("\nTotal de animais no zoológico: " + Animal.getTotalAnimais());
+      
+        System.out.println("Total de alimentações: " + Animal.getTotalAlimentacoes());
     }
 }
