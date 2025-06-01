@@ -37,23 +37,26 @@ public class Habitat {
         }
     }
 
-    public void transferirAnimal(Animal animal, Habitat outroHabitat) {
-        if (animais.contains(animal)) {
-            if (outroHabitat.animais.size() < outroHabitat.capacidade) {
-                if (animal.bioma.equals(outroHabitat.nomedobioma)) {
-                    animais.remove(animal);
-                    outroHabitat.animais.add(animal);
-                    System.out.println("Animal " + animal.nome + " transferido de " + nomedobioma + " para " + outroHabitat.nomedobioma);
-                } else {
-                    System.out.println("Bioma incompatível. Não foi possível transferir.");
-                }
+   public void transferirAnimal(Animal animal, Habitat outroHabitat) {
+    if (animais.contains(animal)) {
+        // Verifica se o habitat de destino tem espaço
+        if (outroHabitat.animais.size() < outroHabitat.capacidade) {
+            // Verifica se o bioma do animal é compatível
+            if (animal.bioma.equals(outroHabitat.nomedobioma)) {
+                // Faz a transferência
+                animais.remove(animal);
+                outroHabitat.animais.add(animal);
+                System.out.println("Animal " + animal.nome + " transferido de " + nomedobioma + " para " + outroHabitat.nomedobioma);
             } else {
-                System.out.println("Habitat de destino cheio. Não foi possível transferir.");
+                System.out.println("Bioma incompatível. Animal " + animal.nome + " permanece no habitat " + nomedobioma);
             }
         } else {
-            System.out.println("Animal não está nesse habitat.");
+            System.out.println("Habitat de destino cheio. Animal " + animal.nome + " permanece no habitat " + nomedobioma);
         }
+    } else {
+        System.out.println("Animal " + animal.nome + " não está no habitat " + nomedobioma);
     }
+}
 
     public String toString() {
         return "Habitat: " + nomedobioma + ", capacidade: " + capacidade + ", tipo: " + tipo + ", id: " + idHabitat + ", animais: " + animais.size();
