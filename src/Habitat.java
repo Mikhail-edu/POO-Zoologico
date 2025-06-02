@@ -21,10 +21,10 @@ public class Habitat {
                 animais.add(animal);
                 System.out.println("Animal " + animal.nome + " adicionado no habitat " + idHabitat);
             } else {
-                System.out.println("Bioma do animal não é compatível com o habitat " + idHabitat);
+                System.out.println("Bioma do animal não é compativel com o habitat " + idHabitat);
             }
         } else {
-            System.out.println("Habitat " + idHabitat + " cheio, não dá pra adicionar mais animais.");
+            System.out.println("Habitat " + idHabitat + " cheio, nao da pra adicionar mais animais.");
         }
     }
 
@@ -45,13 +45,13 @@ public class Habitat {
                     outroHabitat.animais.add(animal);
                     System.out.println("Animal " + animal.nome + " transferido de habitat " + idHabitat + " para habitat " + outroHabitat.idHabitat);
                 } else {
-                    System.out.println("Bioma incompatível. Animal " + animal.nome + " permanece no habitat " + idHabitat);
+                    System.out.println("Bioma incompativel. Animal " + animal.nome + " permanece no habitat " + idHabitat);
                 }
             } else {
                 System.out.println("Habitat " + outroHabitat.idHabitat + " cheio. Animal " + animal.nome + " permanece no habitat " + idHabitat);
             }
         } else {
-            System.out.println("Animal " + animal.nome + " não está no habitat " + idHabitat);
+            System.out.println("Animal " + animal.nome + " nao esta no habitat " + idHabitat);
         }
     }
 
