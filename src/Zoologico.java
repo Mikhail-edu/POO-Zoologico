@@ -1,3 +1,4 @@
+// Classe Zoologico (Main)
 public class Zoologico {
     public static void main(String[] args) {
 
@@ -29,14 +30,14 @@ public class Zoologico {
         Cuidador cuidador4 = new Cuidador("Felipe", habitat1.idHabitat);
         Cuidador cuidador5 = new Cuidador("Valesson", habitat5.idHabitat);
 
-        // Alimentando os animais
+        // Alimentando os animais (com e sem horário)
         animal2.alimentacao(50);
-        animal1.alimentacao(40);
+        animal1.alimentacao(40, "10:00");
         animal3.alimentacao(60);
-        animal4.alimentacao(70);
-        animal5.alimentacao(50);
+        animal4.alimentacao(70, "12:30");
+        animal5.alimentacao(50, "13:15");
 
-        // Impressão dos habitats (já com animais dentro)
+        // Impressão dos habitats
         System.out.println("\nHabitats:");
         System.out.println(habitat1);
         System.out.println(habitat2);
@@ -60,15 +61,13 @@ public class Zoologico {
         System.out.println(cuidador4);
         System.out.println(cuidador5);
 
-        // Transferindo o crocodilo do pantano para o mar
-        System.out.println("\nTransferência de animais:");
+        // Transferências
+        System.out.println("\nTransferencia de animais:");
         habitat2.transferirAnimal(animal3, habitat5);
-
-        // Transferindo o tubarão do mar para a floresta (misto aceita qualquer)
         habitat5.transferirAnimal(animal2, habitat4);
 
-        // Impressão dos habitats após a transferência
-        System.out.println("\nHabitats após as transferências:");
+        // Impressão dos habitats após transferência
+        System.out.println("\nHabitats apos as transferencias:");
         System.out.println(habitat1);
         System.out.println(habitat2);
         System.out.println(habitat3);
@@ -76,7 +75,7 @@ public class Zoologico {
         System.out.println(habitat5);
 
         // Estatísticas finais
-        System.out.println("\nTotal de animais no zoológico: " + Animal.getTotalAnimais());
-        System.out.println("Total de alimentações: " + Animal.getTotalAlimentacoes());
+        System.out.println("\nTotal de animais no zoologico: " + Animal.getTotalAnimais());
+        System.out.println("Total de alimentacoes: " + Animal.getTotalAlimentacoes());
     }
 }
